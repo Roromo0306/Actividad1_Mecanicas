@@ -99,4 +99,9 @@ public class FirstPersonController : MonoBehaviour
             playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition, defaultCameraPosition, Time.deltaTime * headBobSpeed);
         }
     }
+
+    public void SetCanMove(bool canMove)
+    {
+        CanMove = canMove;
+    }
 }
