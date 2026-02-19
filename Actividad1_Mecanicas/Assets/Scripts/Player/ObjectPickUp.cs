@@ -7,6 +7,12 @@ public class ObjectPickup : MonoBehaviour
     public float moveForce = 150f;
     public float damping = 10f;
 
+    [Header("Hold Distance Settings")]
+    public float holdDistance = 2f;
+    public float minHoldDistance = 1f;
+    public float maxHoldDistance = 4f;
+    public float scrollSpeed = 1f;
+
     private Camera playerCamera;
     private Rigidbody heldObject;
     private Transform holdPoint;
@@ -15,6 +21,8 @@ public class ObjectPickup : MonoBehaviour
     {
         playerCamera = GetComponentInChildren<Camera>();
         holdPoint = playerCamera.transform.Find("HoldPoint");
+
+        holdDistance = holdPoint.localPosition.z;
     }
 
     void Update()
@@ -22,14 +30,16 @@ public class ObjectPickup : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             TryPickup();
-            Debug.Log("Estoy cogiendo el objeto");
+            
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             DropObject();
-            Debug.Log("Estoy dejando el objeto");
+            
         }
+
+        HandleScroll();
     }
 
     void FixedUpdate()
@@ -65,6 +75,25 @@ public class ObjectPickup : MonoBehaviour
     {
         Vector3 direction = holdPoint.position - heldObject.position;
         heldObject.AddForce(direction * moveForce, ForceMode.Force);
+    }
+
+    void HandleScroll()
+    {
+        if (heldObject == null) return;
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (Mathf.Abs(scroll) > 0.01f)
+        {
+            holdDistance += scroll * scrollSpeed;
+            holdDistance = Mathf.Clamp(holdDistance, minHoldDistance, maxHoldDistance);
+
+            holdPoint.localPosition = new Vector3(
+                holdPoint.localPosition.x,
+                holdPoint.localPosition.y,
+                holdDistance
+            );
+        }
     }
 
     void DropObject()
