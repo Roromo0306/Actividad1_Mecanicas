@@ -67,6 +67,12 @@ public class ObjectPickup : MonoBehaviour
                 heldObject.useGravity = false;
                 heldObject.drag = damping;
                 heldObject.angularDrag = damping;
+
+                IngredientRespawn respawn = rb.GetComponent<IngredientRespawn>();
+                if (respawn != null)
+                {
+                    respawn.StartRespawnCountdown();
+                }
             }
         }
     }
