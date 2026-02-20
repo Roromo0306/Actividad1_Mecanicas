@@ -3,40 +3,55 @@ using UnityEngine;
 
 public class IngredientRespawn : MonoBehaviour
 {
-    [Header("Respawn Settings")]
-    public float respawnTime = 10f;
+    public float respawnTime = 3f;
 
     private Vector3 startPosition;
     private Quaternion startRotation;
+    private bool respawnRunning = false;
 
-    private bool respawnStarted = false;
+    public bool canRespawn = true;   
+
+    private Rigidbody rb;
+    private Collider col;
+    private Renderer rend;
 
     void Awake()
     {
         startPosition = transform.position;
         startRotation = transform.rotation;
+
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+        rend = GetComponent<Renderer>();
     }
 
-   
-    public void StartRespawnCountdown()
+    public void TriggerRespawn()
     {
-        if (respawnStarted) return;
+        if (!canRespawn) return;
+        if (respawnRunning) return;
 
-        respawnStarted = true;
         StartCoroutine(RespawnCoroutine());
     }
 
     IEnumerator RespawnCoroutine()
     {
+        respawnRunning = true;
+
         yield return new WaitForSeconds(respawnTime);
 
-        GameObject newIngredient = Instantiate(gameObject, startPosition, startRotation);
+        // Reset total
+        transform.position = startPosition;
+        transform.rotation = startRotation;
 
-        
-        IngredientRespawn newRespawn = newIngredient.GetComponent<IngredientRespawn>();
-        if (newRespawn != null)
-        {
-            newRespawn.respawnStarted = false;
-        }
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.isKinematic = false;
+        rb.useGravity = true;
+
+        col.enabled = true;
+        rend.enabled = true;
+
+        respawnRunning = false;
     }
 }
