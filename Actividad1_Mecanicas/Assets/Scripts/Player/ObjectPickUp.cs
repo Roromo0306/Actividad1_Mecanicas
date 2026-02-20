@@ -6,10 +6,17 @@ public class ObjectPickup : MonoBehaviour
     public float moveForce = 150f;
     public float damping = 10f;
 
+    [Header("Scroll Settings")]
+    public float scrollSpeed = 2f;
+    public float minHoldDistance = 1f;
+    public float maxHoldDistance = 4f;
+
+
     private Camera playerCamera;
     private Rigidbody heldObject;
     private Transform holdPoint;
     private IngredientRespawn heldRespawn;
+    private float currentHoldDistance;
 
     void Start()
     {
@@ -24,6 +31,8 @@ public class ObjectPickup : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
             DropObject();
+
+        HandleScroll();
     }
 
     void FixedUpdate()
@@ -76,5 +85,22 @@ public class ObjectPickup : MonoBehaviour
 
         heldObject = null;
         heldRespawn = null;
+    }
+
+    void HandleScroll()
+    {
+        if (heldObject == null) return;
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Mathf.Abs(scroll) < 0.01f) return;
+
+        currentHoldDistance += scroll * scrollSpeed;
+        currentHoldDistance = Mathf.Clamp(currentHoldDistance, minHoldDistance, maxHoldDistance);
+
+        holdPoint.localPosition = new Vector3(
+            holdPoint.localPosition.x,
+            holdPoint.localPosition.y,
+            currentHoldDistance
+        );
     }
 }
