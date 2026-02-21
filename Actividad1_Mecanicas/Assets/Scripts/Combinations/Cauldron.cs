@@ -79,6 +79,7 @@ public class Cauldron : MonoBehaviour
         {
             Debug.Log("Poción creada: " + result);
             SpawnResult(result);
+            PotionBook.Instance.DiscoverPotion(result);
         }
 
         currentIngredients.Clear();
