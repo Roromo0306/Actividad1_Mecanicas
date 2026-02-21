@@ -74,6 +74,7 @@ public class Cauldron : MonoBehaviour
         if (result == PotionResultType.None)
         {
             Debug.Log("La mezcla falló");
+            CamShake.Instance.TriggerShake(0.6f, 0.3f);
         }
         else
         {
