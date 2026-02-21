@@ -7,6 +7,15 @@ public class Cauldron : MonoBehaviour
     public List<IngredientType> currentIngredients = new List<IngredientType>();
     public int maxIngredients = 3;
 
+    [Header("Potion Result Spawns")]
+    public Transform azulSpawnPoint;
+    public Transform encogerSpawnPoint;
+    public Transform fuegoSpawnPoint;
+
+    public GameObject potionAzulPrefab;
+    public GameObject potionEncogerPrefab;
+    public GameObject potionFuegoPrefab;
+
     public void AddIngredient(Ingredient ingredient)
     {
         if (currentIngredients.Count >= maxIngredients)
@@ -60,7 +69,39 @@ public class Cauldron : MonoBehaviour
 
         transform.position = originalPos;
 
-        Debug.Log("Poción creada con " + currentIngredients.Count + " ingredientes");
+        PotionResultType result = PotionResolver.Resolve(currentIngredients);
+
+        if (result == PotionResultType.None)
+        {
+            Debug.Log("La mezcla falló");
+        }
+        else
+        {
+            Debug.Log("Poción creada: " + result);
+            SpawnResult(result);
+        }
+
         currentIngredients.Clear();
+    }
+
+    void SpawnResult(PotionResultType result)
+    {
+        switch (result)
+        {
+            case PotionResultType.Azul:
+                if (potionAzulPrefab && azulSpawnPoint)
+                    Instantiate(potionAzulPrefab, azulSpawnPoint.position, azulSpawnPoint.rotation);
+                break;
+
+            case PotionResultType.Encoger:
+                if (potionEncogerPrefab && encogerSpawnPoint)
+                    Instantiate(potionEncogerPrefab, encogerSpawnPoint.position, encogerSpawnPoint.rotation);
+                break;
+
+            case PotionResultType.Fuego:
+                if (potionFuegoPrefab && fuegoSpawnPoint)
+                    Instantiate(potionFuegoPrefab, fuegoSpawnPoint.position, fuegoSpawnPoint.rotation);
+                break;
+        }
     }
 }

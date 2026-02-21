@@ -4,12 +4,10 @@ using UnityEngine;
 public class IngredientRespawn : MonoBehaviour
 {
     public float respawnTime = 3f;
+    public Transform respawnPoint; // 👈 único por ingrediente
 
-    private Vector3 startPosition;
-    private Quaternion startRotation;
     private bool respawnRunning = false;
-
-    public bool canRespawn = true;   
+    public bool canRespawn = true;
 
     private Rigidbody rb;
     private Collider col;
@@ -17,9 +15,6 @@ public class IngredientRespawn : MonoBehaviour
 
     void Awake()
     {
-        startPosition = transform.position;
-        startRotation = transform.rotation;
-
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         rend = GetComponent<Renderer>();
@@ -27,9 +22,7 @@ public class IngredientRespawn : MonoBehaviour
 
     public void TriggerRespawn()
     {
-        if (!canRespawn) return;
-        if (respawnRunning) return;
-
+        if (!canRespawn || respawnRunning) return;
         StartCoroutine(RespawnCoroutine());
     }
 
@@ -39,18 +32,25 @@ public class IngredientRespawn : MonoBehaviour
 
         yield return new WaitForSeconds(respawnTime);
 
-        // Reset total
-        transform.position = startPosition;
-        transform.rotation = startRotation;
+        // Congelar física antes de mover
+        rb.isKinematic = true;
+        rb.useGravity = false;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        rb.isKinematic = false;
-        rb.useGravity = true;
+        // Teleport seguro
+        transform.position = respawnPoint.position;
+        transform.rotation = respawnPoint.rotation;
 
         col.enabled = true;
         rend.enabled = true;
+
+        // Esperar 1 frame para evitar glitches
+        yield return null;
+
+        rb.isKinematic = false;
+        rb.useGravity = true;
 
         respawnRunning = false;
     }
