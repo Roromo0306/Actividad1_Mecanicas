@@ -1905,9 +1905,9 @@ MonoBehaviour:
   azulSpawnPoint: {fileID: 55301543}
   encogerSpawnPoint: {fileID: 1728823664}
   fuegoSpawnPoint: {fileID: 793199158}
-  potionAzulPrefab: {fileID: 89559019832722744, guid: 6a48e95a3df29fa419b4aad5820fa344, type: 3}
-  potionEncogerPrefab: {fileID: 7754868635274146579, guid: b7ed9d40d5bc7f646b347c5821f46d95, type: 3}
-  potionFuegoPrefab: {fileID: 6985747855795169169, guid: 7a150f1eb375e6f43973a8ca0f1da686, type: 3}
+  potionAzulPrefab: {fileID: 8319094286899546142, guid: 6a48e95a3df29fa419b4aad5820fa344, type: 3}
+  potionEncogerPrefab: {fileID: 5694201274201376168, guid: b7ed9d40d5bc7f646b347c5821f46d95, type: 3}
+  potionFuegoPrefab: {fileID: 109277117954398872, guid: 7a150f1eb375e6f43973a8ca0f1da686, type: 3}
 --- !u!1 &1229351537
 GameObject:
   m_ObjectHideFlags: 0
