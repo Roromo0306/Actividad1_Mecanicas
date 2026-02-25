@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4395635573028035021}
   - component: {fileID: 2318066164249824476}
   - component: {fileID: 3725180952132473244}
+  - component: {fileID: -1052463934337961469}
   m_Layer: 0
   m_Name: Result1 (2)
   m_TagString: Untagged
@@ -149,3 +150,16 @@ MonoBehaviour:
   respawnTime: 3
   respawnPoint: {fileID: 0}
   canRespawn: 1
+--- !u!114 &-1052463934337961469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109277117954398872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc705f207d9123459a8cbf449d19abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionType: 3
