@@ -55,6 +55,7 @@ public class CreatureReaction : MonoBehaviour
                 currentEffect = StartCoroutine(FireEffect());
                 break;
         }
+        Debug.Log("Criatura recibe poción: " + potion.potionType);
 
         Destroy(potion.gameObject);
     }

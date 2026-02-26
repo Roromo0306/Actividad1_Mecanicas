@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2f5181610f7ec46b4d0a13630d7cbc, type: 3}
   m_Name: Potion_Fuego
   m_EditorClassIdentifier: 
-  potionType: 3
+  potionType: 9
   undiscoveredIcon: {fileID: 21300000, guid: 5f34f399f035fde458ce20c172d991c4, type: 3}
   discoveredIcon: {fileID: 21300000, guid: d3ce7a954fe6e1b479f4f1f317a4ba3e, type: 3}
   description: 
