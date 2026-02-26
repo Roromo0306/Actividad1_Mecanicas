@@ -7,14 +7,33 @@ public class Cauldron : MonoBehaviour
     public List<IngredientType> currentIngredients = new List<IngredientType>();
     public int maxIngredients = 3;
 
-    [Header("Potion Result Spawns")]
-    public Transform azulSpawnPoint;
-    public Transform encogerSpawnPoint;
-    public Transform fuegoSpawnPoint;
+    [Header("Spawn Points")]
+    public Transform azulSpawn;
+    public Transform rojoSpawn;
+    public Transform verdeSpawn;
+    public Transform agrandarSpawn;
+    public Transform encogerSpawn;
+    public Transform invisibilidadSpawn;
+    public Transform flotarSpawn;
+    public Transform ranaSpawn;
+    public Transform fuegoSpawn;
+    public Transform fuegoColoresSpawn;
+    public Transform brillarSpawn;
+    public Transform brillarColoresSpawn;
 
+    [Header("Potion Prefabs")]
     public GameObject potionAzulPrefab;
+    public GameObject potionRojoPrefab;
+    public GameObject potionVerdePrefab;
+    public GameObject potionAgrandarPrefab;
     public GameObject potionEncogerPrefab;
+    public GameObject potionInvisibilidadPrefab;
+    public GameObject potionFlotarPrefab;
+    public GameObject potionRanaPrefab;
     public GameObject potionFuegoPrefab;
+    public GameObject potionFuegoColoresPrefab;
+    public GameObject potionBrillarPrefab;
+    public GameObject potionBrillarColoresPrefab;
 
     public void AddIngredient(Ingredient ingredient)
     {
@@ -91,18 +110,51 @@ public class Cauldron : MonoBehaviour
         switch (result)
         {
             case PotionResultType.Azul:
-                if (potionAzulPrefab && azulSpawnPoint)
-                    Instantiate(potionAzulPrefab, azulSpawnPoint.position, azulSpawnPoint.rotation);
+                Instantiate(potionAzulPrefab, azulSpawn.position, azulSpawn.rotation);
+                break;
+
+            case PotionResultType.Rojo:
+                Instantiate(potionRojoPrefab, rojoSpawn.position, rojoSpawn.rotation);
+                break;
+
+            case PotionResultType.Verde:
+                Instantiate(potionVerdePrefab, verdeSpawn.position, verdeSpawn.rotation);
+                break;
+
+            case PotionResultType.Agrandar:
+                Instantiate(potionAgrandarPrefab, agrandarSpawn.position, agrandarSpawn.rotation);
                 break;
 
             case PotionResultType.Encoger:
-                if (potionEncogerPrefab && encogerSpawnPoint)
-                    Instantiate(potionEncogerPrefab, encogerSpawnPoint.position, encogerSpawnPoint.rotation);
+                Instantiate(potionEncogerPrefab, encogerSpawn.position, encogerSpawn.rotation);
+                break;
+
+            case PotionResultType.Invisibilidad:
+                Instantiate(potionInvisibilidadPrefab, invisibilidadSpawn.position, invisibilidadSpawn.rotation);
+                break;
+
+            case PotionResultType.Flotar:
+                Instantiate(potionFlotarPrefab, flotarSpawn.position, flotarSpawn.rotation);
+                break;
+
+            case PotionResultType.Rana:
+                Instantiate(potionRanaPrefab, ranaSpawn.position, ranaSpawn.rotation);
                 break;
 
             case PotionResultType.Fuego:
-                if (potionFuegoPrefab && fuegoSpawnPoint)
-                    Instantiate(potionFuegoPrefab, fuegoSpawnPoint.position, fuegoSpawnPoint.rotation);
+                Instantiate(potionFuegoPrefab, fuegoSpawn.position, fuegoSpawn.rotation);
+                break;
+
+            case PotionResultType.FuegoColores:
+                Instantiate(potionFuegoColoresPrefab, fuegoColoresSpawn.position, fuegoColoresSpawn.rotation);
+                break;
+
+            case PotionResultType.Brillar:
+                Instantiate(potionBrillarPrefab, brillarSpawn.position, brillarSpawn.rotation);
+                break;
+
+            case PotionResultType.BrillarColores:
+                Instantiate(potionBrillarColoresPrefab, brillarColoresSpawn.position, brillarColoresSpawn.rotation);
                 break;
         }
     }

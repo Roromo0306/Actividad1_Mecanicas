@@ -20,6 +20,10 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float headBobAmount = 0.05f; 
     [SerializeField] private float headBobSpeed = 10f;
 
+    [Header("Footstep Sound")]
+    [SerializeField] private AudioSource footstepAudio;
+    [SerializeField] private AudioClip footstepClip; 
+
     private Camera playerCamera;
     private CharacterController characterController;
 
@@ -38,6 +42,10 @@ public class FirstPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         defaultCameraPosition = playerCamera.transform.localPosition;
+
+        footstepAudio.clip = footstepClip;
+        footstepAudio.loop = true;
+        footstepAudio.playOnAwake = false;
     }
 
     private void Update()
@@ -48,9 +56,24 @@ public class FirstPersonController : MonoBehaviour
             HandleMouseLook();
             ApplyFinalMovements();
             HandleHeadBob();
+            HandleFootsteps();
         }
     }
+    private void HandleFootsteps()
+    {
+        bool isMoving = characterController.velocity.magnitude > 0.1f && characterController.isGrounded;
 
+        if (isMoving)
+        {
+            if (!footstepAudio.isPlaying)
+                footstepAudio.Play();
+        }
+        else
+        {
+            if (footstepAudio.isPlaying)
+                footstepAudio.Stop();
+        }
+    }
     private void HandleMovementInput()
     {
         currentInput = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));

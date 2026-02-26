@@ -1,7 +1,16 @@
 public enum PotionResultType
 {
-    None,          
+    None,              
     Azul,
+    Rojo,
+    Verde,
+    Agrandar,
     Encoger,
-    Fuego
+    Invisibilidad,
+    Flotar,
+    Rana,
+    Fuego,
+    FuegoColores,
+    Brillar,
+    BrillarColores
 }
