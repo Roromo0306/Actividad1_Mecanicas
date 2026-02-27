@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 489909881799900861}
   - component: {fileID: -4720065559595137713}
   m_Layer: 0
-  m_Name: Result1
+  m_Name: P_Rana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc705f207d9123459a8cbf449d19abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionType: 1
+  potionType: 8
