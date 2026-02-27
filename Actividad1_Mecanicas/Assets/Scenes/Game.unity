@@ -509,6 +509,8 @@ MonoBehaviour:
   growScale: 1.5
   floatHeight: 1.5
   floatSpeed: 2
+  normalMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  invisibleMaterial: {fileID: 2100000, guid: e208cf6f649770c45bc70b17b79360d7, type: 2}
   audioSource: {fileID: 568501257}
   frogSFX: {fileID: 8300000, guid: eb871f8264ccc634cbebd69a3c9b423f, type: 3}
 --- !u!136 &173006958

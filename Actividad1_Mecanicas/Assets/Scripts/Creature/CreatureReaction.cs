@@ -25,6 +25,12 @@ public class CreatureReaction : MonoBehaviour
     public float floatHeight = 1.5f;
     public float floatSpeed = 2f;
 
+    [Header("Materials")]
+    public Material normalMaterial;
+    public Material invisibleMaterial;
+    Material runtimeNormalMaterial;
+    Material runtimeInvisibleMaterial;
+
     [Header("AudioEffects")]
     public AudioSource audioSource;
     public AudioClip frogSFX;
@@ -36,8 +42,16 @@ public class CreatureReaction : MonoBehaviour
     void Start()
     {
         originalScale = transform.localScale;
+
         if (creatureRenderer)
-            originalColor = creatureRenderer.material.color;
+        {
+            // crear instancias separadas de los materiales
+            runtimeNormalMaterial = new Material(normalMaterial);
+            runtimeInvisibleMaterial = new Material(invisibleMaterial);
+
+            creatureRenderer.material = runtimeNormalMaterial; // empieza visible
+            originalColor = runtimeNormalMaterial.color;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -121,11 +135,14 @@ public class CreatureReaction : MonoBehaviour
 
     IEnumerator InvisibilityEffect()
     {
-        Color c = creatureRenderer.material.color;
+        creatureRenderer.material = runtimeInvisibleMaterial;
+
+        Color c = runtimeInvisibleMaterial.color;
         c.a = 0.15f;
-        creatureRenderer.material.color = c;
+        runtimeInvisibleMaterial.color = c;
 
         yield return new WaitForSeconds(effectDuration);
+
         ResetState();
     }
     IEnumerator FloatSEffect()
@@ -269,7 +286,10 @@ public class CreatureReaction : MonoBehaviour
     void ResetState()
     {
         if (creatureRenderer)
+        {
+            creatureRenderer.material = runtimeNormalMaterial;
             creatureRenderer.material.color = originalColor;
+        }
 
         transform.localScale = originalScale;
 
