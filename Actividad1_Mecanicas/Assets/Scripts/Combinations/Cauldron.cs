@@ -35,6 +35,21 @@ public class Cauldron : MonoBehaviour
     public GameObject potionBrillarPrefab;
     public GameObject potionBrillarColoresPrefab;
 
+    [Header("Board Points")]
+    public Transform[] boardPoints = new Transform[3];
+
+    [Header("Board Icons")]
+    public GameObject iconFlorAzul;
+    public GameObject iconFlorRoja;
+    public GameObject iconFlorVerde;
+    public GameObject iconSetas;
+    public GameObject iconPolvosMagicos;
+    public GameObject iconSustanciaMaligna;
+    public GameObject iconEscamasCamaleon;
+    public GameObject iconAncasRana;
+    public GameObject iconPlumaFenix;
+    public GameObject iconPiedrasPreciosas;
+
     [Header("Audio")]
     public AudioSource audioSource; // asigna un AudioSource en el Inspector
     public AudioClip addIngredientSFX;
@@ -50,6 +65,11 @@ public class Cauldron : MonoBehaviour
         Debug.Log("Reproduciendo sonido de ingrediente");
         PlaySFX(audioSource, addIngredientSFX);
         currentIngredients.Add(ingredient.ingredientType);
+        currentIngredients.Add(ingredient.ingredientType);
+        Debug.Log("Añadido: " + ingredient.ingredientType);
+
+        // Instanciar icono en la pizarra
+        SpawnBoardIcon(ingredient.ingredientType);
         Debug.Log("Añadido: " + ingredient.ingredientType);
 
        
@@ -180,6 +200,39 @@ public class Cauldron : MonoBehaviour
             case PotionResultType.BrillarColores:
                 Instantiate(potionBrillarColoresPrefab, brillarColoresSpawn.position, brillarColoresSpawn.rotation);
                 break;
+        }
+    }
+
+    private void SpawnBoardIcon(IngredientType type)
+    {
+        if (boardPoints == null || boardPoints.Length == 0) return;
+
+        // Contamos cuántos iconos ya hay en la pizarra
+        int index = Mathf.Min(currentIngredients.Count - 1, boardPoints.Length - 1);
+
+        Transform point = boardPoints[index];
+
+        GameObject prefab = null;
+
+        switch (type)
+        {
+            case IngredientType.FlorAzul: prefab = iconFlorAzul; break;
+            case IngredientType.FlorRoja: prefab = iconFlorRoja; break;
+            case IngredientType.FlorVerde: prefab = iconFlorVerde; break;
+            case IngredientType.Setas: prefab = iconSetas; break;
+            case IngredientType.PolvosMagicos: prefab = iconPolvosMagicos; break;
+            case IngredientType.SustanciaMaligna: prefab = iconSustanciaMaligna; break;
+            case IngredientType.EscamasCamaleon: prefab = iconEscamasCamaleon; break;
+            case IngredientType.AncasRana: prefab = iconAncasRana; break;
+            case IngredientType.PlumaFenix: prefab = iconPlumaFenix; break;
+            case IngredientType.PiedrasPreciosas: prefab = iconPiedrasPreciosas; break;
+        }
+
+        if (prefab != null && point != null)
+        {
+            GameObject icon = Instantiate(prefab, point.position, point.rotation);
+            icon.transform.SetParent(point); // opcional, para mantenerlo organizado
+            icon.transform.localScale = Vector3.one * 0.5f; // ajusta tamaño si hace falta
         }
     }
 }
