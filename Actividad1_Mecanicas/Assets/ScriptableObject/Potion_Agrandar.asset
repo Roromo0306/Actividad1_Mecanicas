@@ -15,4 +15,16 @@ MonoBehaviour:
   potionType: 4
   undiscoveredIcon: {fileID: 21300000, guid: 5f34f399f035fde458ce20c172d991c4, type: 3}
   discoveredIcon: {fileID: 21300000, guid: d3ce7a954fe6e1b479f4f1f317a4ba3e, type: 3}
-  description: 
+  description: "escribime descripciones cortas mas la combinacion para cada una de
+    las opciones POCIONES | INGREDIENTES -----------------------------|-----------------------------------------------
+    volver de color azul | flor azul + polvos m\xE1gicos volver de color rojo | flor
+    roja + polvos m\xE1gicos volver de color verde | flor verde + polvos m\xE1gicos
+    agrandar | setas + polvos m\xE1gicos encoger | setas + sustancia maligna invisibilidad
+    | escamas de camale\xF3n + polvos m\xE1gicos hacer flotar | ancas de rana + polvos
+    m\xE1gicos convertir en rana | ancas de rana + sustancia maligna efecto de fuego
+    | pluma de f\xE9nix + polvos m\xE1gicos efecto de fuego de colores | pluma de
+    f\xE9nix + piedras preciosas + polvos m\xE1gicos | pluma de f\xE9nix + flor (de
+    cualquier color) + polvos m\xE1gicos hacer brillar | piedras preciosas + polvos
+    m\xE1gicos hacer brillar de colores | piedras preciosas + flor (cualquiera) |
+    piedras preciosas + pluma de f\xE9nix | piedras preciosas + escamas de camale\xF3n
+    explosi\xF3n | combinaciones err\xF3neas con sustancia maligna"

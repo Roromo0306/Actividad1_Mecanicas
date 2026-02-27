@@ -15,4 +15,5 @@ MonoBehaviour:
   potionType: 2
   undiscoveredIcon: {fileID: 21300000, guid: 5f34f399f035fde458ce20c172d991c4, type: 3}
   discoveredIcon: {fileID: 21300000, guid: d3ce7a954fe6e1b479f4f1f317a4ba3e, type: 3}
-  description: 
+  description: "Volver de color rojo\nIngredientes: Flor roja + Polvos m\xE1gicos\nDescripci\xF3n:
+    Ti\xF1e tu cuerpo de un rojo intenso.\n"

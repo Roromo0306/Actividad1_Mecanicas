@@ -6,6 +6,7 @@ public class PotionBook : MonoBehaviour
 {
     public static PotionBook Instance;
     public GameObject potionBook;
+    public MonoBehaviour cameraController;
 
     public List<PotionResultType> discoveredPotions = new List<PotionResultType>();
 
@@ -38,15 +39,27 @@ public class PotionBook : MonoBehaviour
     public void OpenPotionBook()
     {
         potionBook.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
+
+        // Mostrar cursor y desbloquearlo
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        // Desactivar el script de cámara
+        if (cameraController != null)
+            cameraController.enabled = false;
     }
 
     public void ClosePotionBook()
     {
         potionBook.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+
+        // Ocultar cursor y bloquearlo
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        // Activar el script de cámara
+        if (cameraController != null)
+            cameraController.enabled = true;
     }
     public void DiscoverPotion(PotionResultType potion)
     {
