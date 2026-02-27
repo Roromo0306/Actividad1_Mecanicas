@@ -34,6 +34,8 @@ public class CreatureReaction : MonoBehaviour
     [Header("AudioEffects")]
     public AudioSource audioSource;
     public AudioClip frogSFX;
+    public AudioClip fireSFX;
+    public AudioClip popSFX;
 
     Vector3 originalScale;
     Color originalColor;
@@ -129,7 +131,10 @@ public class CreatureReaction : MonoBehaviour
     IEnumerator ColorEffect(Color c)
     {
         creatureRenderer.material.color = c;
-        yield return new WaitForSeconds(effectDuration);
+        PlaySFX(audioSource, popSFX);
+        yield return new WaitForSeconds(
+               Mathf.Max(effectDuration, popSFX.length));
+        
         ResetState();
     }
 
@@ -175,7 +180,7 @@ public class CreatureReaction : MonoBehaviour
     IEnumerator FrogEffect()
     {
         meshFilter.mesh = frogMesh;
-        audioSource.PlayOneShot(frogSFX);
+        PlaySFX(audioSource, frogSFX);
         yield return new WaitForSeconds(
              Mathf.Max(effectDuration, frogSFX.length)
          ); meshFilter.mesh = normalMesh;
@@ -243,15 +248,20 @@ public class CreatureReaction : MonoBehaviour
     IEnumerator BlueEffect()
     {
         creatureRenderer.material.color = Color.blue;
-        yield return new WaitForSeconds(effectDuration);
+        PlaySFX(audioSource, popSFX);
+        yield return new WaitForSeconds(
+               Mathf.Max(effectDuration, popSFX.length));
+        
         ResetState();
     }
 
     IEnumerator FireEffect()
     {
         fireParticles.Play();
-        yield return new WaitForSeconds(effectDuration);
-        fireParticles.Stop();
+        PlaySFX(audioSource, fireSFX);
+        yield return new WaitForSeconds(
+                    Mathf.Max(effectDuration, fireSFX.length)
+                ); fireParticles.Stop();
         ResetState();
     }
 
@@ -295,5 +305,19 @@ public class CreatureReaction : MonoBehaviour
 
         if (fireParticles && fireParticles.isPlaying)
             fireParticles.Stop();
+    }
+
+    public void PlaySFX(AudioSource source, AudioClip clip)
+    {
+        if (source == null || clip == null) return;
+
+        // Crea un AudioSource temporal para no cortar otros sonidos
+        AudioSource temp = source.gameObject.AddComponent<AudioSource>();
+        temp.clip = clip;
+        temp.volume = source.volume;
+        temp.spatialBlend = source.spatialBlend;
+        temp.Play();
+
+        
     }
 }

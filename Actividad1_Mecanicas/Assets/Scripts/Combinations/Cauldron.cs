@@ -35,6 +35,11 @@ public class Cauldron : MonoBehaviour
     public GameObject potionBrillarPrefab;
     public GameObject potionBrillarColoresPrefab;
 
+    [Header("Audio")]
+    public AudioSource audioSource; // asigna un AudioSource en el Inspector
+    public AudioClip addIngredientSFX;
+    public AudioClip potionCreatedSFX;
+
     public void AddIngredient(Ingredient ingredient)
     {
         if (currentIngredients.Count >= maxIngredients)
@@ -42,9 +47,12 @@ public class Cauldron : MonoBehaviour
             Debug.Log("Caldero lleno");
             return;
         }
-
+        Debug.Log("Reproduciendo sonido de ingrediente");
+        PlaySFX(audioSource, addIngredientSFX);
         currentIngredients.Add(ingredient.ingredientType);
         Debug.Log("Añadido: " + ingredient.ingredientType);
+
+       
 
         // Avisar al respawn
         IngredientRespawn respawn = ingredient.GetComponent<IngredientRespawn>();
@@ -66,6 +74,19 @@ public class Cauldron : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.useGravity = false;
         }
+    }
+    public void PlaySFX(AudioSource source, AudioClip clip)
+    {
+        if (source == null || clip == null) return;
+
+        // Crea un AudioSource temporal para no cortar otros sonidos
+        AudioSource temp = source.gameObject.AddComponent<AudioSource>();
+        temp.clip = clip;
+        temp.volume = source.volume;
+        temp.spatialBlend = source.spatialBlend;
+        temp.Play();
+
+        
     }
 
     void OnMouseDown()
@@ -97,6 +118,7 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
+            PlaySFX(audioSource, potionCreatedSFX);
             Debug.Log("Poción creada: " + result);
             SpawnResult(result);
             PotionBook.Instance.DiscoverPotion(result);
