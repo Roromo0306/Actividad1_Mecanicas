@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Potion_Encoger
   m_EditorClassIdentifier: 
   potionType: 5
-  undiscoveredIcon: {fileID: 21300000, guid: 5f34f399f035fde458ce20c172d991c4, type: 3}
-  discoveredIcon: {fileID: 21300000, guid: d3ce7a954fe6e1b479f4f1f317a4ba3e, type: 3}
+  undiscoveredIcon: {fileID: 21300000, guid: 1f0217987e1d8d044a80b64d033b9e01, type: 3}
+  discoveredIcon: {fileID: 21300000, guid: 2ea3075fb3bc2dc4e965894d156af44a, type: 3}
   description: "Encoger\nIngredientes: Setas + Sustancia maligna\nDescripci\xF3n:
     Red\xFAcete a un tama\xF1o diminuto."

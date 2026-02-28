@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Potion_Agrandar
   m_EditorClassIdentifier: 
   potionType: 4
-  undiscoveredIcon: {fileID: 21300000, guid: 5f34f399f035fde458ce20c172d991c4, type: 3}
-  discoveredIcon: {fileID: 21300000, guid: d3ce7a954fe6e1b479f4f1f317a4ba3e, type: 3}
+  undiscoveredIcon: {fileID: 21300000, guid: 70b9541c313bd5b468a283e017e68ca3, type: 3}
+  discoveredIcon: {fileID: 21300000, guid: 78ede46c1ff5c4845b6353f0b571050c, type: 3}
   description: "escribime descripciones cortas mas la combinacion para cada una de
     las opciones POCIONES | INGREDIENTES -----------------------------|-----------------------------------------------
     volver de color azul | flor azul + polvos m\xE1gicos volver de color rojo | flor

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Potion_FuegoColores
   m_EditorClassIdentifier: 
   potionType: 10
-  undiscoveredIcon: {fileID: 21300000, guid: 5f34f399f035fde458ce20c172d991c4, type: 3}
-  discoveredIcon: {fileID: 21300000, guid: d3ce7a954fe6e1b479f4f1f317a4ba3e, type: 3}
+  undiscoveredIcon: {fileID: 21300000, guid: f41b971e7e81a5a4f9e6dbf32d529ca9, type: 3}
+  discoveredIcon: {fileID: 21300000, guid: 3bc5f70b00d68a94d8dcdce38002a4ac, type: 3}
   description: "Efecto de fuego de colores\nIngredientes: Pluma de f\xE9nix + Piedras
     preciosas + Polvos m\xE1gicos\nDescripci\xF3n: Llamas multicolor que bailan en
     el aire."

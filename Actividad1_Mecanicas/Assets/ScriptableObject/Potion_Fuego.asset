@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Potion_Fuego
   m_EditorClassIdentifier: 
   potionType: 9
-  undiscoveredIcon: {fileID: 21300000, guid: 5f34f399f035fde458ce20c172d991c4, type: 3}
-  discoveredIcon: {fileID: 21300000, guid: d3ce7a954fe6e1b479f4f1f317a4ba3e, type: 3}
+  undiscoveredIcon: {fileID: 21300000, guid: f41b971e7e81a5a4f9e6dbf32d529ca9, type: 3}
+  discoveredIcon: {fileID: 21300000, guid: 3b569d72270563642a3ea094b0d1b66d, type: 3}
   description: "Efecto de fuego\nIngredientes: Pluma de f\xE9nix + Polvos m\xE1gicos\nDescripci\xF3n:
     Llamas surgen de tu cuerpo, efecto ardiente.\n"
